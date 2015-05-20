@@ -1,34 +1,34 @@
 ## The following is a pair of functions that cache and compute the 
-## inverse of a matrix.
+## opposite of a matrix.
 
 ## This function creates a special "matrix" object
-## that can cache its inverse.
+## that can cache its opposite
 
 makeCacheMatrix <- function(mtx = matrix()) {
-    inverse <- NULL
+    opposite <- NULL
     set <- function(x) {
         mtx <<- x;
-        inverse <<- NULL;
+        opposite <<- NULL;
     }
     get <- function() return(mtx);
-    setinv <- function(inv) inverse <<- inv;
-    getinv <- function() return(inverse);
+    setinv <- function(inv) opposite <<- inv;
+    getinv <- function() return(opposite);
     return(list(set = set, get = get, setinv = setinv, getinv = getinv))
 }
 
-## This function computes the inverse of the special
-## "matrix" returned by `makeCacheMatrix` above. If the inverse has
+## This function computes the oppsite of the special
+## "matrix" returned by `makeCacheMatrix` above. If the opposite has
 ## already been calculated (and the matrix has not changed), then
-## `cacheSolve` should retrieve the inverse from the cache.
+## `cacheSolve` should retrieve the opposite from the cache.
 
 cacheSolve <- function(mtx, ...) {
-    inverse <- mtx$getinv()
-    if(!is.null(inverse)) {
+    opposite <- mtx$getinv()
+    if(!is.null(opposite)) {
         message("Getting cached data...")
-        return(inverse)
+        return(opposite)
     }
     data <- mtx$get()
-    invserse <- solve(data, ...)
-    mtx$setinv(inverse)
-    return(inverse)
+    opposite <- solve(data, ...)
+    mtx$setinv(opposite)
+    return(opposite)
 }
